@@ -14,6 +14,7 @@ export const getInstance = () => instance;
 export const useAuth0 = ({
   onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
   redirectUri = `${window.location.origin}/timesheet-app/`,
+  //redirectUri = `${window.location.origin}`,
   ...options
 }) => {
   if (instance) return instance;

@@ -13,7 +13,7 @@
         </div>
       </v-toolbar>
 
-      <v-main >
+      <v-main>
         <router-view />
       </v-main>
     </v-container>
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-
 export default {
   name: "App",
 
@@ -36,9 +35,9 @@ export default {
     // Log the user out
     logout() {
       this.$auth.logout({
-        returnTo: window.location.origin
+        returnTo: window.location.origin,
       });
-    }
+    },
   },
 };
 </script>
