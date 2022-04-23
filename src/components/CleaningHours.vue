@@ -57,7 +57,7 @@ export default {
       friday: 0,
       saturday: 0,
     },
-    rate: 100,
+    rate: this.type === "reg" ? 100 : 50,
     monthObject: null,
   }),
   watch: {
@@ -87,18 +87,12 @@ export default {
       });
     },
     createTimesheet(type, month) {
-      let dates;
-      let days;
-
-      dates = this.dates;
-      days = this.days;
-
       axios
         .post(this.baseUrl, {
           name: type,
           yearMonth: month,
-          dates: dates,
-          days: days,
+          dates: this.dates,
+          days: this.days,
         })
         .then((res) => {
           this.monthObject = res.data;
@@ -108,18 +102,12 @@ export default {
         });
     },
     updateTimesheet(type, month) {
-      let dates;
-      let days;
-
-      dates = this.dates;
-      days = this.days;
-
       axios
         .patch(`${this.baseUrl}/${type}/${month}`, {
           name: type,
           yearMonth: month,
-          dates: dates,
-          days: days,
+          dates: this.dates,
+          days: this.days,
         })
         .then((res) => {
           this.monthObject = res.data;
