@@ -42,8 +42,8 @@ export default {
   name: "CleaningHours",
   props: { type: { type: String, default: "reg" } },
   data: () => ({
-    baseUrl: "https://shielded-fortress-16685.herokuapp.com/timesheet",
-    //baseUrl: "http://localhost:3000/timesheet",
+    //baseUrl: "https://shielded-fortress-16685.herokuapp.com/timesheet",
+    baseUrl: "http://localhost:3000/timesheet",
 
     monthChange: null,
     month: "",
@@ -57,7 +57,7 @@ export default {
       friday: 0,
       saturday: 0,
     },
-    rate: this.getRate(),
+    rate: 100,
     monthObject: null,
   }),
   watch: {
@@ -69,10 +69,14 @@ export default {
       this.getTimesheet(this.type, yearMonth);
     },
   },
+  mounted() {
+    if(this.type === "reg"){
+      this.rate = 100
+    } else {
+      this.rate = 50
+    }
+  },
   methods: {
-    getRate() {
-      return this.type === "reg" ? 100 : 50
-    },
     getTimesheet(type, month) {
       axios.get(`${this.baseUrl}/${type}/${month}`).then((res) => {
         // if we have a response, update
