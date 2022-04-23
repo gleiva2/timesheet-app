@@ -57,7 +57,7 @@ export default {
       friday: 0,
       saturday: 0,
     },
-    rate: this.type === "reg" ? 100 : 50,
+    rate: this.getRate(),
     monthObject: null,
   }),
   watch: {
@@ -70,6 +70,9 @@ export default {
     },
   },
   methods: {
+    getRate() {
+      return this.type === "reg" ? 100 : 50
+    },
     getTimesheet(type, month) {
       axios.get(`${this.baseUrl}/${type}/${month}`).then((res) => {
         // if we have a response, update
