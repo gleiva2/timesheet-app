@@ -12,8 +12,8 @@ export const getInstance = () => instance;
 
 /** Creates an instance of the Auth0 SDK. If one has already been created, it returns that instance */
 export const useAuth0 = ({
-  onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
-  //redirectUri = `${window.location.origin}/timesheet-app/`,
+  //onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
+  redirectUri = `${window.location.origin}/timesheet-app/`,
   redirectUri = `${window.location.origin}`,
   ...options
 }) => {

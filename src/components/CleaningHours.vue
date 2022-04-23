@@ -42,8 +42,8 @@ export default {
   name: "CleaningHours",
   props: { type: { type: String, default: "reg" } },
   data: () => ({
-    //baseUrl: "https://shielded-fortress-16685.herokuapp.com/timesheet",
-    baseUrl: "http://localhost:3000/timesheet",
+    baseUrl: "https://shielded-fortress-16685.herokuapp.com/timesheet",
+    //baseUrl: "http://localhost:3000/timesheet",
 
     monthChange: null,
     month: "",
