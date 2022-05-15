@@ -1,37 +1,45 @@
 <template>
-  <v-container>
-    <v-sheet>
-      <v-date-picker
-        v-model="dates"
-        multiple
-        elevation="5"
-        no-title
-        @input="updateDates"
-        :picker-date.sync="monthChange"
-      >
-      </v-date-picker>
+  <div>
+    <v-container>
+      <v-row>
+        <v-col cols="12" align-self="center">
+          <v-card>
+            <v-card-title color="primary">
+              {{ type === "reg" ? "Cleaning Hours" : "PT Cleaning Hours" }}
+            </v-card-title>
+            <v-date-picker
+              v-model="dates"
+              multiple
+              no-title
+              @input="updateDates"
+              :picker-date.sync="monthChange"
+            >
+            </v-date-picker>
 
-      <div v-for="(value, name) in days" v-bind:key="name">
-        <p v-if="value != 0">
-          {{ name.charAt(0).toUpperCase() + name.slice(1) }}: {{ value }} *
-          {{ rate }} = {{ value * rate }}
-        </p>
-      </div>
+            <div v-for="(value, name) in days" v-bind:key="name" class="pl-4">
+              <p v-if="value != 0">
+                {{ name.charAt(0).toUpperCase() + name.slice(1) }}:
+                {{ value }} * {{ rate }} = {{ value * rate }}
+              </p>
+            </div>
 
-      <p>
-        Total:
-        {{
-          days.sunday * rate +
-          days.monday * rate +
-          days.tuesday * rate +
-          days.wednesday * rate +
-          days.thursday * rate +
-          days.friday * rate +
-          days.saturday * rate
-        }}
-      </p>
-    </v-sheet>
-  </v-container>
+            <p class="pa-4">
+              Total:
+              {{
+                days.sunday * rate +
+                days.monday * rate +
+                days.tuesday * rate +
+                days.wednesday * rate +
+                days.thursday * rate +
+                days.friday * rate +
+                days.saturday * rate
+              }}
+            </p>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -70,10 +78,10 @@ export default {
     },
   },
   mounted() {
-    if(this.type === "reg"){
-      this.rate = 100
+    if (this.type === "reg") {
+      this.rate = 100;
     } else {
-      this.rate = 50
+      this.rate = 50;
     }
   },
   methods: {
